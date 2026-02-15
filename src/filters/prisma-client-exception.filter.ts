@@ -18,7 +18,6 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
 
     switch (exception.code) {
       case 'P2002': {
-        // Unique constraint violation
         status = HttpStatus.CONFLICT;
         message = `Unique constraint failed on field(s): ${(
           exception.meta?.target as string[]
@@ -27,7 +26,6 @@ export class PrismaClientExceptionFilter implements ExceptionFilter {
       }
 
       case 'P2025': {
-        // Record not found
         status = HttpStatus.NOT_FOUND;
         message = 'Record not found';
         break;

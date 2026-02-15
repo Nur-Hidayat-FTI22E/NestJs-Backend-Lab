@@ -9,7 +9,6 @@ import { PrismaClientExceptionFilter } from './filters/prisma-client-exception.f
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Enable global ValidationPipe
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -18,11 +17,8 @@ async function bootstrap() {
     }),
   );
 
-  // Register global exception filter
   app.useGlobalFilters(new PrismaClientExceptionFilter());
 
-  // Enable global ClassSerializerInterceptor for response serialization
-  // Note: plainToInstance in controllers takes precedence for nested exclusions
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   const config = new DocumentBuilder()
