@@ -1,299 +1,182 @@
-# NestJS Backend Lab
+# Laboratorium Informatika, Universitas Muhammadiyah Makassar
 
-Sebuah tutorial lengkap untuk membangun REST API backend menggunakan NestJS, Prisma, dan PostgreSQL.
+<p align="center">
+  <a href="https://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+</p>
 
-## Informasi Praktikan
+<p align="center">
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
+  <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
+</p>
 
-- **Nama**: NUR HIDAYAT
-- **NIM**: 105841115422
-- **Repository**: [NestJs-Backend-Lab](https://github.com/Nur-Hidayat-FTI22E/NestJs-Backend-Lab)
+---
 
-## Tentang Proyek
+# :books: Panduan Lengkap: Backend REST API dengan NestJS & Prisma
 
-Proyek ini merupakan implementasi aplikasi backend API untuk blog sederhana bernama "Median" (terinspirasi dari Medium). Melalui tutorial ini, Anda akan membangun API yang lengkap dengan fitur CRUD articles, user management, authentication, dan banyak lagi.
+> Seri tutorial membangun backend REST API untuk aplikasi blog **"Median"** (klon sederhana Medium) menggunakan **NestJS**, **Prisma**, dan **PostgreSQL**.
 
-### Teknologi yang Digunakan
+---
 
-- **NestJS** (v11.1.13) - Framework backend Node.js
-- **TypeScript** (v5.9.3) - Bahasa pemrograman dengan tipe statis
-- **Prisma** (v4.15.0) - ORM (Object-Relational Mapping)
-- **PostgreSQL** (v13.5) - Database relasional
-- **Swagger/OpenAPI** - API Documentation
-- **Passport.js** - Authentication library
-- **JWT** - JSON Web Token untuk session management
-- **Bcrypt** - Password hashing
-- **Docker** - Container untuk PostgreSQL
+## :clipboard: Daftar Chapter
 
-## Daftar Chapter
+| # | Chapter | Topik Utama | Link |
+|---|---------|-------------|------|
+| 1 | **Membangun REST API** | Setup NestJS, PostgreSQL, Prisma, CRUD Articles, Swagger | [:book: Buka Chapter 1](./chapter-1/README.md) |
+| 2 | **Validasi Input & Error Handling** | ValidationPipe, class-validator, ParseIntPipe, Exception Filter | [:book: Buka Chapter 2](./chapter-2/README.md) |
+| 3 | **Data Relasional & User Management** | Model User, Relasi One-to-Many, CRUD Users, Sembunyikan Password | [:book: Buka Chapter 3](./chapter-3/README.md) |
+| 4 | **Authentication (JWT & Bcrypt)** | Passport, JWT Token, Auth Guard, Bcrypt Hashing, Swagger Auth | [:book: Buka Chapter 4](./chapter-4/README.md) |
 
-Proyek ini terbagi menjadi 4 chapter yang dirancang untuk diikuti secara berurutan:
+---
 
-| Chapter | Topik | Status |
-|---------|-------|--------|
-| 1 | Membangun REST API dengan NestJS dan Prisma | Selesai |
-| 2 | Validasi Input & Error Handling | Selesai |
-| 3 | Mengelola Data Relasional & User Management | Selesai |
-| 4 | Authentication (JWT & Bcrypt) | Selesai |
-
-Buka folder masing-masing chapter untuk melihat dokumentasi lengkap dan checklist pembelajaran.
-
-## Progress Laporan Praktikum
-
-Berikut adalah status implementasi dari setiap chapter:
-
-| Chapter | Deskripsi | Status |
-|---------|-----------|--------|
-| Chapter 1 | Setup REST API, Docker, Prisma, CRUD Articles, Swagger | Selesai |
-| Chapter 2 | Validasi input, error handling, exception filters | Selesai |
-| Chapter 3 | User model, relationships, serialization, @Exclude() | Selesai |
-| Chapter 4 | JWT authentication, Passport, Auth Guards, bcrypt | Selesai |
-
-**Status keseluruhan**: Semua chapter telah diselesaikan dan siap untuk dipelajari.
-
-## Prasyarat
-
-Pastikan sudah menginstal:
-
-- Node.js v14 atau lebih tinggi
-- npm v6 atau lebih tinggi
-- Docker dan Docker Compose
-- Git
-
-## Cara Menjalankan Proyek
-
-### 1. Clone Repository
-
-```bash
-git clone https://github.com/Nur-Hidayat-FTI22E/NestJs-Backend-Lab.git
-cd NestJs-Backend-Lab
-```
-
-### 2. Install Dependencies
-
-```bash
-npm install
-```
-
-### 3. Setup Environment Variables
-
-Buat file `.env` di root project:
+## :dart: Apa yang Akan Kamu Bangun?
 
 ```
-DATABASE_URL="postgres://myuser:mypassword@localhost:5432/median-db"
-JWT_SECRET="your-secret-key-here"
++----------------------------------------------+
+|                MEDIAN API                     |
+|                                               |
+|   Articles   -> CRUD + Relasi ke Author       |
+|   Users      -> CRUD + Password Hashing       |
+|   Auth       -> Login + JWT Token             |
+|   Swagger    -> Dokumentasi API Otomatis      |
+|                                               |
+|   Tech Stack:                                 |
+|   - NestJS      (Framework)                   |
+|   - Prisma      (ORM)                         |
+|   - PostgreSQL  (Database)                    |
+|   - Swagger     (API Docs)                    |
+|   - Passport    (Authentication)              |
+|   - Docker      (PostgreSQL Container)        |
++----------------------------------------------+
 ```
 
-### 4. Jalankan Database dengan Docker
+---
 
-```bash
-docker-compose up -d
-```
+## :wrench: Teknologi yang Digunakan
 
-Untuk verifikasi database sudah berjalan:
+| Teknologi | Deskripsi |
+|-----------|-----------|
+| **NestJS** | Framework backend Node.js |
+| **Prisma** | ORM (Object-Relational Mapper) |
+| **PostgreSQL** | Database relasional |
+| **Swagger/OpenAPI** | Dokumentasi API otomatis |
+| **TypeScript** | Bahasa pemrograman |
+| **Docker** | Container untuk PostgreSQL |
+| **Passport** | Library authentication |
+| **JWT** | Token-based authentication |
+| **Bcrypt** | Password hashing |
+| **class-validator** | Validasi input |
 
-```bash
-docker-compose ps
-```
+---
 
-### 5. Jalankan Prisma Migration
+## :hammer_and_wrench: Prasyarat
 
-```bash
-npx prisma migrate dev
-```
+Sebelum memulai, pastikan kamu sudah menginstal:
 
-### 6. Seed Database
+| Software | Versi Minimum | Cek Instalasi |
+|----------|---------------|---------------|
+| **Node.js** | v14+ | `node --version` |
+| **npm** | v6+ | `npm --version` |
+| **Docker** | v20+ | `docker --version` |
+| **VS Code** | Latest | - |
 
-```bash
-npx prisma db seed
-```
+---
 
-Data yang di-seed:
-- 3 user dengan password ter-hash
-- Beberapa artikel published dan draft untuk setiap user
+## :rocket: Cara Menggunakan Tutorial Ini
 
-### 7. Jalankan Development Server
+1. **Ikuti secara berurutan** - Setiap chapter membangun di atas chapter sebelumnya
+2. **Ketik kode sendiri** - Jangan copy-paste, ketik ulang agar lebih paham
+3. **Eksperimen** - Coba ubah kode dan lihat apa yang terjadi
+4. **Baca komentar** - Setiap kode dilengkapi penjelasan di komentar
 
-```bash
-npm run start:dev
-```
+---
 
-Server akan berjalan di `http://localhost:3021`
+## :book: Ringkasan per Chapter
 
-### 8. Akses API Documentation
+### Chapter 1: Membangun REST API
+> Setup proyek dari nol hingga REST API yang berfungsi penuh dengan dokumentasi Swagger.
 
-Buka Swagger UI di browser: `http://localhost:3021/api`
+**Yang dipelajari:** NestJS CLI, Docker PostgreSQL, Prisma schema & migration, CRUD operations, Swagger/OpenAPI
 
-Di sini Anda dapat melihat semua endpoint API dan mencobanya secara langsung.
+### Chapter 2: Validasi Input & Error Handling
+> Membuat API lebih robust dengan validasi input dan penanganan error yang baik.
 
-## Project Structure
+**Yang dipelajari:** ValidationPipe, class-validator decorators, ParseIntPipe, Exception Filters, PrismaClientExceptionFilter
 
-```
-src/
-├── articles/          # Modul Article (CRUD)
-│   ├── dto/
-│   ├── entities/
-│   ├── articles.controller.ts
-│   ├── articles.service.ts
-│   └── articles.module.ts
-├── users/             # Modul User (CRUD + Password)
-│   ├── dto/
-│   ├── entities/
-│   ├── users.controller.ts
-│   ├── users.service.ts
-│   └── users.module.ts
-├── auth/              # Modul Authentication
-│   ├── strategies/
-│   ├── guards/
-│   ├── auth.controller.ts
-│   ├── auth.service.ts
-│   └── auth.module.ts
-├── filters/           # Exception filters
-├── main.ts            # Entry point aplikasi
-└── app.module.ts      # Root module
+### Chapter 3: Data Relasional & User Management
+> Menambahkan model User, relasi dengan Article, dan menyembunyikan data sensitif.
 
-prisma/
-├── schema.prisma      # Database schema
-├── seed.ts            # Database seeding
-└── migrations/        # Migration files
+**Yang dipelajari:** Prisma relations, CRUD Users, ClassSerializerInterceptor, @Exclude decorator
 
-chapter-1/            # Dokumentasi Chapter 1
-chapter-2/            # Dokumentasi Chapter 2
-chapter-3/            # Dokumentasi Chapter 3
-chapter-4/            # Dokumentasi Chapter 4
-```
+### Chapter 4: Authentication (JWT & Bcrypt)
+> Mengamankan API dengan sistem login dan token-based authentication.
 
-## API Endpoints
+**Yang dipelajari:** Passport.js, JWT, Auth Guards, bcrypt password hashing, Swagger Bearer Auth
 
-### Articles
+---
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| GET | `/articles` | Ambil semua artikel yang published |
-| GET | `/articles/drafts` | Ambil semua artikel draft |
-| GET | `/articles/:id` | Ambil artikel berdasarkan ID |
-| POST | `/articles` | Buat artikel baru |
-| PATCH | `/articles/:id` | Update artikel |
-| DELETE | `/articles/:id` | Hapus artikel |
+## ✅ Progress Laporan Praktikum
 
-### Users
+> **Instruksi:** Centang chapter yang sudah selesai dikerjakan. Detail checklist ada di masing-masing chapter.
 
-| Method | Endpoint | Deskripsi | Auth |
-|--------|----------|-----------|------|
-| POST | `/users` | Register user baru | - |
-| GET | `/users` | Ambil semua users | JWT |
-| GET | `/users/:id` | Ambil user berdasarkan ID | JWT |
-| PATCH | `/users/:id` | Update user | JWT |
-| DELETE | `/users/:id` | Hapus user | JWT |
+### Chapter 1 — Membangun REST API
+- [x] Persiapan lingkungan (Node.js, Docker, VS Code)
+- [x] Setup proyek NestJS
+- [x] Setup database PostgreSQL (Docker)
+- [x] Setup Prisma (install, init, schema)
+- [x] Model data & migrasi database
+- [x] Seed database dengan data awal
+- [x] Membuat Prisma Service & Module
+- [x] Setup Swagger
+- [x] Implementasi CRUD Articles (6 endpoint)
+- [x] Konfigurasi Swagger response types
+- [x] **📋 [Lihat detail checklist →](./chapter-1/README.md#-laporan-praktikum--chapter-1)**
 
-### Authentication
+### Chapter 2 — Validasi Input & Error Handling
+- [x] Validasi input dengan `ValidationPipe` & `class-validator`
+- [x] Whitelist filtering (buang field yang tidak diinginkan)
+- [x] Transformasi parameter URL dengan `ParseIntPipe`
+- [x] Error handling dengan `NotFoundException`
+- [x] Membuat `PrismaClientExceptionFilter` (P2002, P2025)
+- [x] **📋 [Lihat detail checklist →](./chapter-2/README.md#-laporan-praktikum--chapter-2)**
 
-| Method | Endpoint | Deskripsi |
-|--------|----------|-----------|
-| POST | `/auth/login` | Login dan dapatkan JWT token |
+### Chapter 3 — Data Relasional & User Management
+- [x] Membuat model `User` dan relasi one-to-many dengan `Article`
+- [x] Migrasi dan seed data user
+- [x] Implementasi CRUD Users (5 endpoint)
+- [x] Menyembunyikan password dengan `@Exclude()` & `ClassSerializerInterceptor`
+- [x] Menampilkan relasi author di response Article
+- [x] **📋 [Lihat detail checklist →](./chapter-3/README.md#-laporan-praktikum--chapter-3)**
 
-## Testing API
+### Chapter 4 — Authentication (JWT & Bcrypt)
+- [x] Setup Auth module dengan Passport & JWT
+- [x] Membuat endpoint `POST /auth/login`
+- [x] Membuat JWT Strategy & Auth Guard
+- [x] Melindungi endpoint Users dengan `@UseGuards`
+- [x] Integrasi Bearer Auth di Swagger
+- [x] Hashing password dengan bcrypt
+- [x] Update login untuk bcrypt
+- [x] **📋 [Lihat detail checklist →](./chapter-4/README.md#-laporan-praktikum--chapter-4)**
 
-### Menggunakan Swagger UI
+### 🏁 Status Keseluruhan
+- [x] **Chapter 1 selesai**
+- [x] **Chapter 2 selesai**
+- [x] **Chapter 3 selesai**
+- [x] **Chapter 4 selesai**
+- [x] **🎓 SEMUA CHAPTER SELESAI — Praktikum telah diselesaikan seluruhnya**
 
-1. Buka `http://localhost:3021/api`
-2. Coba endpoint dari interface Swagger
-3. Untuk protected endpoints, klik tombol "Authorize" di bagian atas dan masukkan JWT token
+| Item | Keterangan |
+|------|------------|
+| Nama | NUR HIDAYAT |
+| NIM | 105841115422 |
+| Tanggal Mulai | 15 Februari 2026 |
+| Tanggal Selesai | 15 Februari 2026 |
+| Tanda Tangan | _________________________ |
 
-### Menggunakan cURL
+---
 
-```bash
-# Login
-curl -X POST http://localhost:3021/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"sabin@adams.com","password":"password-sabin"}'
-
-# Gunakan token dari response untuk akses protected endpoint
-curl -X GET http://localhost:3021/users \
-  -H "Authorization: Bearer <token_dari_login>"
-```
-
-## Database Schema
-
-### Model User
-
-Menyimpan informasi user dengan password ter-hash:
-
-- `id` - Primary key
-- `name` - Nama user
-- `email` - Email unik
-- `password` - Password ter-hash dengan bcrypt
-- `createdAt` - Tanggal pembuatan
-- `updatedAt` - Tanggal update terakhir
-- `articles` - Relasi ke articles (one-to-many)
-
-### Model Article
-
-Menyimpan informasi artikel dan relasi ke author:
-
-- `id` - Primary key
-- `title` - Judul artikel (unik)
-- `description` - Deskripsi singkat
-- `body` - Konten artikel
-- `published` - Status publikasi
-- `createdAt` - Tanggal pembuatan
-- `updatedAt` - Tanggal update terakhir
-- `author` - Relasi ke user (many-to-one)
-- `authorId` - Foreign key ke user
-
-## Troubleshooting
-
-### Database Connection Error
-
-Pastikan PostgreSQL container berjalan:
-
-```bash
-docker-compose up -d
-docker-compose ps
-```
-
-### Port 3021 Sudah Terpakai
-
-Ganti port di `main.ts` dan sesuaikan client Anda.
-
-### Prisma Migration Error
-
-```bash
-npx prisma migrate reset
-```
-
-Peringatan: Ini akan menghapus semua data!
-
-### JWT Token Invalid
-
-- Pastikan Authorization header format: `Bearer <token>`
-- Cek token expiration di [jwt.io](https://jwt.io/)
-- Verifikasi `JWT_SECRET` di file `.env`
-
-## Dokumentasi Chapter
-
-Setiap chapter memiliki dokumentasi lengkap dengan penjelasan, kode contoh, dan checklist:
-
-- [Chapter 1 Documentation](./chapter-1/README.md)
-- [Chapter 2 Documentation](./chapter-2/README.md)
-- [Chapter 3 Documentation](./chapter-3/README.md)
-- [Chapter 4 Documentation](./chapter-4/README.md)
-
-## Resources
+## :link: Referensi
 
 - [NestJS Documentation](https://docs.nestjs.com/)
 - [Prisma Documentation](https://www.prisma.io/docs/)
-- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
 - [Swagger/OpenAPI](https://swagger.io/)
 - [Passport.js](https://www.passportjs.org/)
-
-## Notes
-
-- Password disimpan dengan aman menggunakan bcrypt dengan 10 salt rounds
-- Token JWT memiliki masa berlaku 24 jam
-- Semua endpoint yang menyangkut data user dilindungi dengan JWT authentication
-- Field password tidak ditampilkan dalam API response menggunakan decorator `@Exclude()`
-- Database error di-handle dengan filter custom untuk pesan yang lebih informatif
-
-## License
-
-MIT
