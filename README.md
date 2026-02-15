@@ -170,7 +170,7 @@ Sebelum memulai, pastikan kamu sudah menginstal:
 | NIM | 105841115422 |
 | Tanggal Mulai | 15 Februari 2026 |
 | Tanggal Selesai | 15 Februari 2026 |
-| Tanda Tangan | _________________________ |
+| Tanda Tangan | https://github.com/Nur-Hidayat-FTI22E/NestJs-Backend-Lab.git |
 
 ---
 
